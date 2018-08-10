@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: miao
@@ -12,28 +13,23 @@
 </head>
 <body>
 
-    <%
-        Object message = request.getAttribute("message");
-        if (message != null) {
-    %>
-    <span><%=message%></span>
-    <%
-        }
-    %>
+    <c:if test="${requestScope.message != null}">
+        <span>${message}</span>
+    </c:if>
 
     <form action="add.do" method="post">
         <table style="background-color: aquamarine">
             <tr>
                 <td>CustomerName:</td>
-                <td><input type="text" name="name" value="<%= request.getParameter("name") == null ? "" : request.getParameter("name") %>"/></td>
+                <td><input type="text" name="name" value="${param.name}"/></td>
             </tr>
             <tr>
                 <td>Address:</td>
-                <td><input type="text" name="address" value="<%= request.getParameter("address") == null ? "" : request.getParameter("address") %>"/></td>
+                <td><input type="text" name="address" value="${param.address}"/></td>
             </tr>
             <tr>
                 <td>Phone:</td>
-                <td><input type="text" name="phone" value="<%= request.getParameter("phone") == null ? "" : request.getParameter("phone") %>"/></td>
+                <td><input type="text" name="phone" value="${param.phone}"/></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="Submit"/></td>

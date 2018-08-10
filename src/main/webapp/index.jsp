@@ -1,5 +1,5 @@
-<%@ page import="java.util.List" %>
-<%@ page import="fun.westory.mvc.pojo.Customer" %><%--
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
   Created by IntelliJ IDEA.
   User: miao
   Date: 2018/8/6
@@ -25,6 +25,7 @@
     </script>
 </head>
 <body>
+
     <form action="query.do" method="post">
         <table>
             <tr>
@@ -49,10 +50,7 @@
 
     <br><br>
 
-    <%
-        List<Customer> customers = (List<Customer>) request.getAttribute("customers");
-        if(customers != null && customers.size()>0){
-    %>
+    <c:if test="${! empty requestScope.customers}">
 
     <hr>
     <br><br>
@@ -66,28 +64,22 @@
             <th>UPDATE\DELETE</th>
         </tr>
 
-        <%
-            for (Customer customer : customers) {
-        %>
+        <c:forEach items="${customers}" var="customer">
             <tr>
-                <td><%=customer.getId()%></td>
-                <td><%=customer.getName()%></td>
-                <td><%=customer.getAddress()%></td>
-                <td><%=customer.getPhone()%></td>
+                <td>${customer.id}</td>
+                <td>${customer.name}</td>
+                <td>${customer.address}</td>
+                <td>${customer.phone}</td>
                 <td>
-                    <a href="edit.do?id=<%=customer.getId()%>">UPDATE</a>
-                    <a href="delete.do?id=<%=customer.getId()%>" class="delete">DELETE</a>
+                    <a href="edit.do?id=${customer.id}">UPDATE</a>
+                    <a href="delete.do?id=${customer.id}" class="delete">DELETE</a>
                 </td>
             </tr>
-        <%
-            }
-        %>
+        </c:forEach>
 
     </table>
 
 
-    <%
-        }
-    %>
+    </c:if>
 </body>
 </html>

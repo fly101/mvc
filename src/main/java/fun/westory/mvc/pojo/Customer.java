@@ -14,6 +14,9 @@ public class Customer implements Serializable {
 
     private String phone;
 
+    private String cardType;
+    private String card;
+
     public Customer() {
     }
 
@@ -21,6 +24,13 @@ public class Customer implements Serializable {
         this.name = name;
         this.address = address;
         this.phone = phone;
+    }
+
+    public Customer(String name, String address, String cardType, String card) {
+        this.name = name;
+        this.address = address;
+        this.cardType = cardType;
+        this.card = card;
     }
 
     public Integer getId() {
@@ -55,26 +65,20 @@ public class Customer implements Serializable {
         this.phone = phone;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Customer customer = (Customer) o;
-
-        if (id != null ? !id.equals(customer.id) : customer.id != null) return false;
-        if (name != null ? !name.equals(customer.name) : customer.name != null) return false;
-        if (address != null ? !address.equals(customer.address) : customer.address != null) return false;
-        return phone != null ? phone.equals(customer.phone) : customer.phone == null;
+    public String getCardType() {
+        return cardType;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        return result;
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
+    }
+
+    public String getCard() {
+        return card;
+    }
+
+    public void setCard(String card) {
+        this.card = card;
     }
 
     @Override
@@ -84,6 +88,8 @@ public class Customer implements Serializable {
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
+                ", cardType='" + cardType + '\'' +
+                ", card='" + card + '\'' +
                 '}';
     }
 }
